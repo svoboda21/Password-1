@@ -2,9 +2,10 @@
     require_once 'function.php';
     require_once 'resttrue.php';
     if (!empty($_POST)) {
-        if (login($_POST['login'], $_POST['password'])) {
+        if (login($_POST['login'],$_POST['password'])) {
             $_SESSION['test']=$_POST['login'];
             $_SESSION['name']=$_POST['login'];
+            $_SESSION['passwordadmin']=$_POST['password'];
             redirect('test');
             die;
         }
