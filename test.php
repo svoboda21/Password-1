@@ -34,28 +34,34 @@
   <form name="n1" action="test.php" method="GET">
     <div>Доступные тесты:</div>
     <br>
-        <?php foreach($string as $key=>$el){?>
-          <div><?php echo "$el";?></div>
-          <div><input type="radio" name="<?php echo "$key";?>" value="a" /> </div>
-          <div><input type="submit" name="1" value="Начать"></div>
+        <?php foreach($string as $key=>$el) { ?>
+            <div><?php echo "$el"; ?></div>
+            <div><input type="radio" name="<?php echo "$key"; ?>" value="a"/></div>
+            <div><input type="submit" name="1" value="Начать"></div>
             <br>
             <div><input type="submit" name="2" value="Удалить"></div>
             <br>
+            <div><input type="submit" name="3" value="Добавить новый тест"></div>
+            <br>
+            <br>
             <input type="button" value="Выйти" onclick="location='index.php' "/>
-<?php
-    if (isset($_GET[2])){
-        if (file_exists($el)) {
-            unlink($el);
-            $erase = str_replace("$el ", "", $text1);
-            file_put_contents('list.php', $erase);
-            echo "Файл $el удален";
-            redirect('admin');
-            } else {
-                echo "Файл $el уже удален";
-                die;
-            }
-    }
+            <?php
+            if (isset($_GET[2])) {
+                if (file_exists($el)) {
+                    unlink($el);
+                    $erase = str_replace("$el ", "", $text1);
+                    file_put_contents('list.php', $erase);
+                    echo "Файл $el удален";
+                    redirect('admin');
+                } else {
+                    echo "Файл $el уже удален";
+                    die;
                 }
+            }
+            if (isset($_GET[3])) {
+                redirect('admin');
+            }
+        }
     for($i=0; $i<count($string);$i++){
             if (isset($_GET[$i])){
                 $filenew1 = file_get_contents("$string[$i]");
