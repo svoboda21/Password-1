@@ -1,7 +1,8 @@
 <?php
     require_once 'function.php';
-    if (empty($_SESSION['test'])) {
-        header("HTTP/1.1 403 Forbidden");
+    if (empty($_SESSION['test'])&&empty($_SESSION['passwordadmin'])){
+        http_response_code(403);
+        echo 'Вам доступ запрещен';
         die;
     }
     require_once 'function.php';
@@ -42,7 +43,6 @@
             <div><input type="submit" name="2" value="Удалить"></div>
             <br>
             <div><input type="submit" name="3" value="Добавить новый тест"></div>
-            <br>
             <br>
             <input type="button" value="Выйти" onclick="location='index.php' "/>
             <?php
